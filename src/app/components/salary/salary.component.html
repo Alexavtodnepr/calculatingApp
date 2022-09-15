@@ -1,0 +1,47 @@
+<!--<div class="joke-field">-->
+<!--  <p>Did you hear about the crazy lady who tackled the Pope during Christmas Mass at St. Peter's Basilica? Chuck Norris became enraged after hearing this. As a response, Chuck Norris tackled the whole Catholic Church exclaiming, "If you want it done right, you might as well do it yourself".</p>-->
+<!--</div>-->
+<div class="container">
+  <form [formGroup]="form"
+        (ngSubmit)="submit()"
+  >
+    <div class="field">
+      <label for="total">Касса общая</label>
+      <input formControlName="total" id="total" type="number">
+    </div>
+    <div class="field">
+      <label for="terminal">Сумма в терминале</label>
+      <input formControlName="terminal" id="terminal" type="number">
+    </div>
+    <div class="field">
+      <label for="startDay">Начало работы</label>
+      <input formControlName="startDay" id="startDay" type="time" value="">
+    </div>
+    <div class="field">
+      <label for="endDay">Конец работы</label>
+      <input formControlName="endDay" id="endDay" type="time">
+    </div>
+    <div class="field">
+      <label for="yeasterdayTotal">Вчерашний остаток</label>
+      <input formControlName="yeasterdayTotal" id="yeasterdayTotal" type="number">
+    </div>
+    <div class="field">
+      <label for="costs">Расходы сумма</label>
+      <input formControlName="costs" id="costs" type="number">
+    </div>
+    <button type="submit" [disabled]="form.invalid || form.pristine">Расчитать</button>
+    <button *ngIf="!checkedFlag" [disabled]="form.invalid || form.pristine" (click)="resetForm()">Reset form</button>
+    <div *ngIf="checkedFlag" class="checkedblock">
+      <div class="instruction">
+        Если все сходится - отправить!
+      </div>
+      <div class="buttonBlock">
+        <button (click)="saveDatas()">Отправить</button>
+        <button (click)="resetForm()">Пересчитать</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="salary" *ngIf="salary"><span class="span">зарплата:</span> {{salary}}<span class="span"> грн</span></div>
+  <div class="tommorow" *ngIf="tomorrow"><span class="span">на завтра:</span>{{tomorrow}}<span class="span"> грн</span></div>
+</div>

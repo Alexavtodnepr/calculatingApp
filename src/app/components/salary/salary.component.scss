@@ -1,0 +1,90 @@
+.joke-field{
+  background-color: black;
+  color: whitesmoke;
+}
+
+.container{
+  margin: 0 auto;
+  max-width: 900px;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+  background-color: #f1f0f0;
+  & form {
+    padding-top: 20px;
+    max-width: 650px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+.field{
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  align-items: center;
+  font-size: 24px;
+  & label{
+    padding-top: 5px;
+    width: 300px;
+    height: 30px;
+  }
+  & input{
+    max-width: 300px;
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    font-size: 24px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+  }
+}
+
+.salary, .tommorow{
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.73);
+  padding: 50px;
+  margin: 20px;
+  max-width: 450px;
+  font-size: 32px;
+  color: #fa0000;
+}
+.span{
+  font-size: 24px;
+  color: whitesmoke;
+}
+
+.checkedblock{
+  text-align: center;
+  & .instruction{
+    font-size: 18px;
+  }
+}
+
+button{
+  padding: 10px;
+  width: 200px;
+  margin: 5px;
+  background-color: #38026e;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  color: whitesmoke;
+  &:hover{
+    opacity: 0.9;
+  }
+  &:disabled{
+    background-color: #555555;
+  }
+}
