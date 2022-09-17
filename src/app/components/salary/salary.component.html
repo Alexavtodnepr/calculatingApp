@@ -21,14 +21,34 @@
       <label for="endDay">Конец работы</label>
       <input formControlName="endDay" id="endDay" type="time">
     </div>
+      <small>Данные за {{dataDate | date : 'd/M/yy'}}</small>
     <div class="field">
       <label for="yeasterdayTotal">Вчерашний остаток</label>
       <input formControlName="yeasterdayTotal" id="yeasterdayTotal" type="number">
     </div>
+<!--    <div class="field">-->
+<!--      <label for="costs">Расходы сумма</label>-->
+<!--      <input formControlName="costs" id="costs" type="number">-->
+<!--    </div>-->
     <div class="field">
-      <label for="costs">Расходы сумма</label>
-      <input formControlName="costs" id="costs" type="number">
+      <div>Расходы</div>
+      <div>{{costsSumm}}</div>
     </div>
+    <ng-container *ngIf="costsArray.lenght !==0">
+      <div class="field" *ngFor="let cost of costsArray; let i=index">
+        <p>{{i + 1}}.</p>
+        <p>{{cost.name}}</p>
+        <p>{{cost.cost}}</p>
+        <mat-icon (click)="removeCosts(i)">delete_forever</mat-icon>
+      </div>
+    </ng-container>
+
+    <div class="field">
+      <input type="text" formControlName="NameCost" placeholder="Введи название!">
+      <input type="number" formControlName="costInput" placeholder="0">
+      <button class="blue" type="button" title="Добавить в отчет" [disabled]="form.controls['costInput'].invalid || form.controls['NameCost'].pristine || form.controls['NameCost'].invalid || form.controls['costInput'].pristine" (click)="pushToArray()"><mat-icon class="icon">add_circle</mat-icon></button>
+    </div>
+
     <button type="submit" [disabled]="form.invalid || form.pristine">Расчитать</button>
     <button *ngIf="!checkedFlag" [disabled]="form.invalid || form.pristine" (click)="resetForm()">Reset form</button>
     <div *ngIf="checkedFlag" class="checkedblock">
@@ -36,12 +56,17 @@
         Если все сходится - отправить!
       </div>
       <div class="buttonBlock">
-        <button (click)="saveDatas()">Отправить</button>
+        <button (click)="saveAndSend()">Отправить</button>
         <button (click)="resetForm()">Пересчитать</button>
       </div>
     </div>
   </form>
 
   <div class="salary" *ngIf="salary"><span class="span">зарплата:</span> {{salary}}<span class="span"> грн</span></div>
-  <div class="tommorow" *ngIf="tomorrow"><span class="span">на завтра:</span>{{tomorrow}}<span class="span"> грн</span></div>
+  <div class="tommorow" *ngIf="tomorrow"><span class="span">на завтра:</span>{{tomorrow}}<span class="span"> грн</span> <mat-icon title="Изменить фактическую кассу" (click)="changeTomorrow()">create</mat-icon></div>
+  <div class=" field changeblock" *ngIf="change">
+    <input class="input" [(ngModel)]="tomInput" type="text">
+    <button type="button" (click)="saveAndSend()"><mat-icon>save</mat-icon>Сохранить и отправить все</button>
+    <button type="button" (click)="resetAll()">Сбросить все</button>
+  </div>
 </div>
